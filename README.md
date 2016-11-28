@@ -17,9 +17,24 @@ Nouns we've found:
 - Player
 - Dealer
 - Deck
+		52 cards (13 of each suit)
+			2,3,4,5,6,7,8,9,10,J,Q,K,Ace
+		Spade, Club, Heart, Diamond
+		Shuffle
+		Deal
 - Card
+		value
+		suit
+		face
+
 - Ace
 - Hand
+		At least 2 cards(At least 1 is hidden from dealer)
+		value
+		blackjack
+		bust
+
+
 - Game
 - Rule
 - Blackjack

@@ -2,6 +2,10 @@ class Card
   #value
   #suit
   attr_accessor :value, :suit, :face
+
+  def description
+    "The #{face} of #{suit}"
+  end
 end
 
 class Deck
@@ -45,12 +49,56 @@ class Deck
   end
 end
 
+class Hand
+  # At least 2 cards(At least 1 is hidden from dealer)
+  # value
+  # blackjack?
+  # bust
+  attr_accessor :cards
+  def initialize (deck)
+    @cards = []
+    2.times do
+      card = deck.deal
+      @cards << card
+    end
+  end
+
+  def description
+    @cards.map {|card| card.description}.join(" and ")
+  end
+
+  def value
+    # Long version of inject
+    @cards.inject(0) {|total, card| total + card.value}
+    # Short hand version of inject
+    @cards.map {|card| card.value}.inject(:+)
+    # Without inject
+    total = 0
+    @cards.each do |card|
+      total = total + card.value
+    end
+    return total
+  end
+
+  def blackjack?
+    if value == 21
+      true
+    else
+      false
+    end
+  end
+end
+
 deck = Deck.new
 
 p deck.cards.length
 
-card = deck.deal
+player_hand = Hand.new(deck)
+p player_hand.description
+p player_hand.value
+p player_hand.blackjack?
 
-puts "The #{card.face} of #{card.suit}"
-
-p deck.cards.length
+dealer_hand = Hand.new(deck)
+p dealer_hand.description
+p dealer_hand.value
+p dealer_hand.blackjack?
