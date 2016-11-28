@@ -59,20 +59,24 @@ class Hand
   def initialize (deck)
     @cards = []
     2.times do
-      card = deck.deal
-      @cards << card
+      hit(deck)
     end
   end
 
+  def hit(deck)
+    card = deck.deal
+    @cards << card
+  end
+
   def description
-    @cards.map {|card| card.description}.join(" and ")
+    @cards.map { |card| card.description }.join(" and ")
   end
 
   def value
     # Long version of inject
     @cards.inject(0) {|total, card| total + card.value}
     # Short hand version of inject
-    @cards.map {|card| card.value}.inject(:+)
+    @cards.map { |card| card.value }.inject(:+)
     # Without inject
     total = 0
     @cards.each do |card|
@@ -90,6 +94,39 @@ class Hand
   end
 end
 
+class Dealer
+  def initialize(deck)
+    @hand = Hand.new(deck)
+  end
+
+  def card_total
+    @hand.value
+  end
+
+  def need_card?
+    card_total < 16
+  end
+end
+
+class Player
+  def initialize(deck)
+      @hand = Hand.new(deck)
+  end
+
+  def card_total
+    @hand.value
+  end
+end
+
+  #   if card_total > 21
+  #     puts "Bust"
+  #   else
+  #     if card_total < 16
+  #       @hand.hit(deck)
+  #     end
+  #   end
+  # end
+
 deck = Deck.new
 
 p deck.cards.length
@@ -103,3 +140,14 @@ dealer_hand = Hand.new(deck)
 p dealer_hand.description
 p dealer_hand.value
 p dealer_hand.blackjack?
+
+# dealer = Dealer.new(deck)
+# dealer.need_card?
+
+# dealer gets two cards
+# player gets two cards
+# Keep asking player if they want cards
+#   until either they bust, they get 21, or they choose to stop
+# Dealer keeps taking cards until they go over 16
+# decide who wins
+#   player wins if more than the dealer but didn't bust, or if the dealer busts
