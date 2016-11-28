@@ -8,8 +8,28 @@
 	4. Game uses 1 - 52 card deck with no wilds
 	5. New shuffled deck every game
 	6. No betting at all
-	7. Dealer plays by set rules:
-		1. Dealer hits if they hold less than 16, otherwise Dealer stays
-	8.You must beat the dealer.
+	7. Dealer plays by set rules: Dealer hits if they hold less than 16, otherwise Dealer stays
+	8. You must beat the dealer.
 	9. If you get 21 on the deal (blackjack!) then you automatically win
 	10. You can see only the first card dealt to the dealer. All others are hidden.
+
+Nouns we've found:
+- Player
+- Dealer
+- Deck
+- Card
+- Ace
+- Hand
+- Game
+- Rule
+- Blackjack
+
+Verbs:
+- Hit
+- Stay
+- Shuffle
+- Split
+- Deal
+- Hide/See (hidden)
+- Win
+- Lose
